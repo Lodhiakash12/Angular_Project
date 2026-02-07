@@ -1,0 +1,90 @@
+<div class="home-container">
+
+  <div class="top-bar">
+    <h2>Home Page</h2>
+
+    <button (click)="logout()">Logout</button>
+  </div>
+
+
+
+  <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
+
+  <div class="field">
+    <input type="text" name="name" required [(ngModel)]="name" #nameRef="ngModel" placeholder="Name">
+
+    <div class="error">
+
+      <span *ngIf="nameRef.invalid && nameRef.touched">
+
+        Name is required
+      </span>
+    </div>
+  </div>
+
+
+  <div class="field">
+
+    <input type="email" name="email" required  email [(ngModel)]="email"
+           #emailRef="ngModel"
+           placeholder="Email">
+
+    <div class="error">
+      <span *ngIf="emailRef.invalid && emailRef.touched">
+        Enter valid email
+      </span>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <input type="number" name="age" required min="1" [(ngModel)]="age" #ageRef="ngModel" placeholder="Age">
+
+    <div class="error">
+      <span *ngIf="ageRef.invalid && ageRef.touched">
+        Enter valid age
+      </span>
+
+    </div>
+  </div>
+
+  <button type="button"
+        (dblclick)="addUser(userForm)"
+        
+        [disabled]="userForm.invalid">
+  Add
+</button>
+
+
+</form>
+
+
+
+  <div *ngIf="users.length > 0; else noData">
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Action</th>
+      </tr>
+
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.age }}</td>
+        <td>
+          <button (click)="deleteUser(i)">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+  <ng-template #noData>
+    
+    <p class="no-data">No data available</p>
+  </ng-template>
+
+</div>
