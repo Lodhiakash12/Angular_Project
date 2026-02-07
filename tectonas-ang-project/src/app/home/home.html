@@ -25,9 +25,7 @@
 
   <div class="field">
 
-    <input type="email" name="email" required  email [(ngModel)]="email"
-           #emailRef="ngModel"
-           placeholder="Email">
+    <input type="email" name="email" required  email [(ngModel)]="email" #emailRef="ngModel"  placeholder="Email">
 
     <div class="error">
       <span *ngIf="emailRef.invalid && emailRef.touched">
@@ -48,10 +46,7 @@
     </div>
   </div>
 
-  <button type="button"
-        (dblclick)="addUser(userForm)"
-        
-        [disabled]="userForm.invalid">
+ <button type="button" (dblclick)="addUser(userForm)" title="Double click to add" [disabled]="userForm.invalid">
   Add
 </button>
 
