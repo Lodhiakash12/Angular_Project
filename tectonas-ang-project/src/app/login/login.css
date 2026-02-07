@@ -9,7 +9,9 @@ body {
 }
 
 .login-container {
+  border: 2px solid;
   margin: 0 auto;
+  margin-top: 50px;
   width: 360px;
   padding: 35px 30px;
   background-color: #ffffff;
