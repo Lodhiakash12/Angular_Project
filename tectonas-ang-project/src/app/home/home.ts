@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -12,56 +12,49 @@ import { FormsModule } from '@angular/forms';
 })
 export class Home {
 
+  name: string = '';
+  email: string = '';
+  age: number | null = null;
 
-  name = '';
-  email = '';
-
-  age = '';
-
-  users: any[] = [];
+  users: { name: string; email: string; age: number }[] = [];
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const data = localStorage.getItem('users');
-
     if (data) {
-
       this.users = JSON.parse(data);
     }
   }
 
-  addUser(form: any) {
+  addUser(form: NgForm): void {
 
-  if (form.invalid) {
+    if (form.invalid || this.age === null) {
+      return;
+    }
+
+    this.users.push({
+      name: this.name,
+      email: this.email,
+      age: this.age
+    });
+
+    localStorage.setItem('users', JSON.stringify(this.users));
+
+    form.resetForm();
 
 
-    return;
+    this.name = '';
+    this.email = '';
+    this.age = null;
   }
 
-  this.users.push({
-    name: this.name,
-    email: this.email,
-    age: this.age
-  });
-
-  localStorage.setItem('users', JSON.stringify(this.users));
-
-  form.resetForm();   
-  
-}
-
-
-
-
-
-  deleteUser(index: number) {
+  deleteUser(index: number): void {
     this.users.splice(index, 1);
-    
     localStorage.setItem('users', JSON.stringify(this.users));
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('isLoggedIn');
     this.router.navigate(['/login']);
   }

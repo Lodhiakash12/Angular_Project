@@ -2,60 +2,47 @@
 
   <div class="top-bar">
     <h2>Home Page</h2>
-
-    <button (click)="logout()">Logout</button>
+    <button type="button" (click)="logout()">Logout</button>
   </div>
 
+  <form #userForm="ngForm" novalidate>
 
+    <div class="field">
+      <input type="text" name="name" required [(ngModel)]="name" #nameRef="ngModel" placeholder="Name">
 
-  <form #userForm="ngForm" (ngSubmit)="addUser(userForm)">
-
-  <div class="field">
-    <input type="text" name="name" required [(ngModel)]="name" #nameRef="ngModel" placeholder="Name">
-
-    <div class="error">
-
-      <span *ngIf="nameRef.invalid && nameRef.touched">
-
-        Name is required
-      </span>
+      <div class="error">
+        <span *ngIf="nameRef.invalid && (nameRef.touched || nameRef.dirty)">
+          Name is required
+        </span>
+      </div>
     </div>
-  </div>
 
+    <div class="field">
+      <input type="email" name="email" required email [(ngModel)]="email" #emailRef="ngModel" placeholder="Email">
 
-  <div class="field">
-
-    <input type="email" name="email" required  email [(ngModel)]="email"
-           #emailRef="ngModel"
-           placeholder="Email">
-
-    <div class="error">
-      <span *ngIf="emailRef.invalid && emailRef.touched">
-        Enter valid email
-      </span>
+      <div class="error">
+        <span *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
+          Enter valid email
+        </span>
+      </div>
     </div>
-  </div>
 
+    <div class="field">
+      <input type="number" name="age" required min="1" max="100" pattern="[0-9]+" [(ngModel)]="age" #ageRef="ngModel" placeholder="Age">
 
-  <div class="field">
-    <input type="number" name="age" required min="1" [(ngModel)]="age" #ageRef="ngModel" placeholder="Age">
-
-    <div class="error">
-      <span *ngIf="ageRef.invalid && ageRef.touched">
-        Enter valid age
-      </span>
-
+      <div class="error">
+        <span *ngIf="ageRef.invalid && (ageRef.touched || ageRef.dirty)">
+          Enter valid age
+        </span>
+      </div>
     </div>
-  </div>
 
-  <button type="button" (dblclick)="addUser(userForm)" title="Double click to add" [disabled]="userForm.invalid">
-  Add
-</button>
+    <button type="button" (dblclick)="addUser(userForm)" title="Double click to add"
+      [disabled]="!userForm || userForm.invalid">
+      Add
+    </button>
 
-
-</form>
-
-
+  </form>
 
   <div *ngIf="users.length > 0; else noData">
 
@@ -72,7 +59,7 @@
         <td>{{ user.email }}</td>
         <td>{{ user.age }}</td>
         <td>
-          <button (click)="deleteUser(i)">Delete</button>
+          <button type="button" (click)="deleteUser(i)">Delete</button>
         </td>
       </tr>
     </table>
@@ -80,7 +67,6 @@
   </div>
 
   <ng-template #noData>
-    
     <p class="no-data">No data available</p>
   </ng-template>
 
