@@ -7,6 +7,7 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet,FormsModule],
 
   templateUrl: './app.html',
+  
   styleUrl: './app.css'
 })
 
