@@ -1,9 +1,13 @@
 # Tectonas Ang Project
 
+------------------------------------------------------------------------
+
 Hi, My name is Aakash Lodhi .I have Completed The Angular Project
 there is little Bit Diff in my project and the description u have given me 
 like  My project uses standalone components introduced in newer Angular versions,
 so the Names are like home.ts instead of home.component.ts
+
+------------------------------------------------------------------------
 
 A simple Angular mini project built to demonstrate Angular fundamentals
 including routing, template-driven forms, validation, localStorage, and

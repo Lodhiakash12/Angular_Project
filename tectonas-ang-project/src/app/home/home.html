@@ -20,11 +20,22 @@
     <div class="field">
       <input type="email" name="email" required email [(ngModel)]="email" #emailRef="ngModel" placeholder="Email">
 
+<<<<<<< HEAD
       <div class="error">
         <span *ngIf="emailRef.invalid && (emailRef.touched || emailRef.dirty)">
           Enter valid email
         </span>
       </div>
+=======
+  <div class="field">
+
+    <input type="email" name="email" required  email [(ngModel)]="email" #emailRef="ngModel"  placeholder="Email">
+
+    <div class="error">
+      <span *ngIf="emailRef.invalid && emailRef.touched">
+        Enter valid email
+      </span>
+>>>>>>> 276d452411f15fe8ef81d3b19aaad7aef97fde1a
     </div>
 
     <div class="field">
@@ -36,6 +47,17 @@
         </span>
       </div>
     </div>
+<<<<<<< HEAD
+=======
+  </div>
+
+ <button type="button" (dblclick)="addUser(userForm)" title="Double click to add" [disabled]="userForm.invalid">
+  Add
+</button>
+
+
+</form>
+>>>>>>> 276d452411f15fe8ef81d3b19aaad7aef97fde1a
 
     <button type="button" (dblclick)="addUser(userForm)" title="Double click to add"
       [disabled]="!userForm || userForm.invalid">
